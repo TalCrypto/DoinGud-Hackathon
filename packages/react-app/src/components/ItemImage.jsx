@@ -6,7 +6,7 @@ export default function ItemImage({ id, readContracts }) {
   const metaURI = useContractReader(readContracts, "NFTCreativeItem", "uri", [id]);
   // const approvedAll = useContractReader(readContracts, "NFTCreativeItem", "isApprovedForAll", [
   //   address,
-  //   readContracts.CollectionCreator?.address,
+  //   readContracts.CollectionFactory?.address,
   // ]);
   const [meta, setMeta] = useState(null);
 

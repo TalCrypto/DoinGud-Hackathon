@@ -27,10 +27,10 @@ export default function ExampleUI({
       */}
       <h2 style={{ marginTop: 20 }}>My Items</h2>
       <div style={{ display: "flex", width: "100%", justifyContent: "center" }}>
-        {address && (
+        {address && readContracts.CollectionFactory && (
           <Item id={0} address={address} tx={tx} readContracts={readContracts} writeContracts={writeContracts} />
         )}
-        {address && (
+        {address && readContracts.CollectionFactory && (
           <Item id={1} address={address} tx={tx} readContracts={readContracts} writeContracts={writeContracts} />
         )}
       </div>
@@ -57,7 +57,7 @@ export default function ExampleUI({
       */}
       <Events
         contracts={readContracts}
-        contractName="CollectionCreator"
+        contractName="CollectionFactory"
         eventName="NFTMinted"
         localProvider={localProvider}
         mainnetProvider={mainnetProvider}

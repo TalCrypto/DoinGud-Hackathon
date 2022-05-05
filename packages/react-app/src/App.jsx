@@ -264,7 +264,7 @@ function App(props) {
           <Link to="/debug1">Item Contract Functions</Link>
         </Menu.Item>
         <Menu.Item key="/debug2">
-          <Link to="/debug2">Creator Contract Functions</Link>
+          <Link to="/debug2">NFT Factory Contract Functions</Link>
         </Menu.Item>
         {/* <Menu.Item key="/hints">
           <Link to="/hints">Hints</Link>
@@ -310,7 +310,7 @@ function App(props) {
             */}
 
           <Contract
-            name="CollectionCreator"
+            name="CollectionFactory"
             price={price}
             signer={userSigner}
             provider={localProvider}

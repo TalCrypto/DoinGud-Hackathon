@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
 import "./HunterNFT.sol";
 import "./NFTCreativeItem.sol";
 
-contract CollectionCreator is Ownable {
+contract CollectionFactory is Ownable {
 
   using EnumerableSet for EnumerableSet.UintSet;
 

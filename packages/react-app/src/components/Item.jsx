@@ -10,7 +10,7 @@ export default function Item({ id, address, tx, readContracts, writeContracts })
   const balance = useContractReader(readContracts, "NFTCreativeItem", "balanceOf", [address, id]);
   const approved = useContractReader(readContracts, "NFTCreativeItem", "isApprovedForAll", [
     address,
-    readContracts.CollectionCreator.address,
+    readContracts.CollectionFactory.address,
   ]);
   const [price, setPrice] = useState(0);
   const [amount, setAmount] = useState(0);
@@ -31,7 +31,7 @@ export default function Item({ id, address, tx, readContracts, writeContracts })
   // const metaURI = useContractReader(readContracts, "NFTCreativeItem", "uri", [id]);
   // const approvedAll = useContractReader(readContracts, "NFTCreativeItem", "isApprovedForAll", [
   //   address,
-  //   readContracts.CollectionCreator?.address,
+  //   readContracts.CollectionFactory?.address,
   // ]);
   // const [meta, setMeta] = useState(null);
 
@@ -57,11 +57,11 @@ export default function Item({ id, address, tx, readContracts, writeContracts })
         onClick={async () => {
           if (!approved) {
             const apx = tx(
-              writeContracts.NFTCreativeItem.setApprovalForAll(writeContracts.CollectionCreator.address, "true"),
+              writeContracts.NFTCreativeItem.setApprovalForAll(writeContracts.CollectionFactory.address, "true"),
             );
             await apx;
           }
-          tx(writeContracts.CollectionCreator.mintHunter(id));
+          tx(writeContracts.CollectionFactory.mintHunter(id));
         }}
       >
         Mint Hunter NFT

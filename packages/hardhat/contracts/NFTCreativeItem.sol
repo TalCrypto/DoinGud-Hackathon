@@ -33,8 +33,20 @@ contract NFTCreativeItem is ERC1155Supply, Ownable, IERC1155Receiver {
     // seller => prod ids
     mapping(address=>EnumerableSet.UintSet) prodIdsOfSeller;
 
-    constructor(string memory uri) ERC1155(uri) {
+    string private _name;
+    string private _symbol;
 
+    constructor(string memory uri) ERC1155(uri) {
+        _name = "NFT Creative Item";
+        _symbol = "NCI";
+    }
+
+    function name() public view virtual returns (string memory) {
+        return _name;
+    }
+
+    function symbol() public view virtual returns (string memory) {
+        return _symbol;
     }
 
     function _putOnSale(address _seller, uint256 _tokenId, uint256 _amount, uint256 _price) private {
