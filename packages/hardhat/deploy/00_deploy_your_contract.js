@@ -17,16 +17,31 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   const { deployer } = await getNamedAccounts();
   const chainId = await getChainId();
 
-  await deploy("YourContract", {
+  await deploy("NFTCreativeItem", {
     // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
     from: deployer,
     // args: [ "Hello", ethers.utils.parseEther("1.5") ],
+    args: [ "https://gateway.moralisipfs.com/ipfs/QmRbj4TuyTjEDStmfuQWDGCH73icp1yBVQQgYrHaRc5Ttf/metadata/{id}.json" ],
     log: true,
     waitConfirmations: 5,
   });
 
   // Getting a previously deployed contract
-  const YourContract = await ethers.getContract("YourContract", deployer);
+  const NFTCreativeItem = await ethers.getContract("NFTCreativeItem", deployer);
+
+  await deploy("CollectionCreator", {
+    // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
+    from: deployer,
+    // args: [ "Hello", ethers.utils.parseEther("1.5") ],
+    args: [ NFTCreativeItem.address ],
+    log: true,
+    waitConfirmations: 5,
+  });
+
+  const CollectionCreator = await ethers.getContract("CollectionCreator", deployer);
+
+  // await NFTCreativeItem.transferOwnership("0x1f9cDa13706d5d89f7d7E3e0b76307aCB29B4E9a");
+  // await CollectionCreator.transferOwnership("0x1f9cDa13706d5d89f7d7E3e0b76307aCB29B4E9a");
   /*  await YourContract.setPurpose("Hello");
   
     To take ownership of yourContract using the ownable library uncomment next line and add the 
@@ -76,4 +91,4 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   //   console.error(error);
   // }
 };
-module.exports.tags = ["YourContract"];
+module.exports.tags = ["NFTCreativeItem"];
